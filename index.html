@@ -17,8 +17,20 @@ body {
   background: linear-gradient(to bottom, #cce5ff, #e6f2ff);
   display: flex;
   justify-content: center;
-  padding: 100px;
+  padding: 20px;
+  position: relative; /* allow overlay */
+  overflow-x: hidden;
 }
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=");
+  opacity: 0.08; /* adjust strength if needed */
+  pointer-events: none;
+}
+
 
 .container {
   max-width: 500px;
