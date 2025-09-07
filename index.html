@@ -53,16 +53,21 @@ input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #444;
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 8px;
   box-sizing: border-box;
-  background: #1a2d55;
+  
+  background: rgba(255,255,255,0.1);   /* translucent, blends with card */
   color: #ffffff;
+  
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);  /* Safari/iOS */
 }
 
 input::placeholder {
-  color: #99a7c2;
+  color: #99a7c2; /* subtle light gray-blue */
 }
+
 
 button {
   margin-top: 12px;
@@ -70,17 +75,36 @@ button {
   width: 100%;
   font-size: 16px;
   font-weight: bold;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 10px;
-  background: #007bff; /* ForeFlight bright blue */
+  
+  background: linear-gradient(
+    to bottom,
+    rgba(0,123,255,0.9),   /* lighter blue top */
+    rgba(0,86,179,0.9)     /* darker blue bottom */
+  );
+  
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Safari/iOS */
+  
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  background: #0056b3;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,140,255,0.95),
+    rgba(0,100,200,0.95)
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
 }
+
 
 span {
   font-weight: bold;
