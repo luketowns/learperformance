@@ -14,19 +14,20 @@ const v1Grid = {"0":{"11000":{"-19":109.0,"-7":109.0,"4":109.0,"16":109.0,"27":1
   <style>
 body {
   font-family: Arial, sans-serif;
-  /* darker, richer gradient with an extra midpoint */
   background: linear-gradient(
     to bottom,
-    #93c8ff 0%,    /* slightly darker top */
-    #bfe7ff 45%,   /* mid */
-    #e6f2ff 100%   /* bottom */
+    #cce5ff 0%,    /* light sky blue top */
+    #99ccff 25%,   /* mid-light */
+    #66b2ff 50%,   /* medium blue */
+    #3385ff 75%,   /* strong blue */
+    #0066cc 100%   /* deep blue bottom */
   );
   display: flex;
   justify-content: center;
   padding: 20px;
-  position: relative; /* allow overlay positioning */
-  overflow-x: hidden;
+  position: relative;
 }
+
 
 body::after {
   content: "";
