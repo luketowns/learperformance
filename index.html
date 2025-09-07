@@ -14,31 +14,13 @@ const v1Grid = {"0":{"11000":{"-19":109.0,"-7":109.0,"4":109.0,"16":109.0,"27":1
   <style>
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(
-    to bottom,
-    #cce5ff 0%, 
-    #99ccff 25%, 
-    #66b2ff 50%, 
-    #3385ff 75%,  
-    #0066cc 100%  
-  );
+  background: #1e3d73; /* medium-dark blue base */
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=");
+  background-repeat: repeat;
   display: flex;
   justify-content: center;
   padding: 20px;
   position: relative;
-}
-
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0; /* shorthand for top:0; left:0; right:0; bottom:0; */
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=");
-  /* subtle strength — raise to 0.12 or 0.14 if banding persists */
-  opacity: 0.10;
-  pointer-events: none;
-  z-index: 0;
-  mix-blend-mode: normal;
 }
 
 .container {
