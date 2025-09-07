@@ -14,27 +14,37 @@ const v1Grid = {"0":{"11000":{"-19":109.0,"-7":109.0,"4":109.0,"16":109.0,"27":1
   <style>
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #cce5ff, #e6f2ff);
+  /* darker, richer gradient with an extra midpoint */
+  background: linear-gradient(
+    to bottom,
+    #93c8ff 0%,    /* slightly darker top */
+    #bfe7ff 45%,   /* mid */
+    #e6f2ff 100%   /* bottom */
+  );
   display: flex;
   justify-content: center;
   padding: 20px;
-  position: relative; /* allow overlay */
+  position: relative; /* allow overlay positioning */
   overflow-x: hidden;
 }
 
 body::after {
   content: "";
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0; /* shorthand for top:0; left:0; right:0; bottom:0; */
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=");
-  opacity: 0.08; /* adjust strength if needed */
+  /* subtle strength — raise to 0.12 or 0.14 if banding persists */
+  opacity: 0.10;
   pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: normal;
 }
-
 
 .container {
   max-width: 500px;
   width: 100%;
+  position: relative;
+  z-index: 1; /* bring content above the overlay */
 }
 
 h1, h2, h3, h4, h5, h6 {
