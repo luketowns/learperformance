@@ -14,9 +14,10 @@ const v1Grid = {"0":{"11000":{"-19":109.0,"-7":109.0,"4":109.0,"16":109.0,"27":1
   <style>
 body {
   font-family: Arial, sans-serif;
-  background: #1e3d73; /* medium-dark blue base */
+  background: #0b1d3a; /* ForeFlight dark navy */
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=");
   background-repeat: repeat;
+  color: #e6ecf5; /* light gray text for dark bg */
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -27,20 +28,21 @@ body {
   max-width: 500px;
   width: 100%;
   position: relative;
-  z-index: 1; /* bring content above the overlay */
+  z-index: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  color: #ffffff; /* bright headings */
 }
 
 .section {
   margin-bottom: 20px;
   padding: 20px;
-  background: white;
+  background: #243b6b; /* lighter ForeFlight-style panel blue */
   border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5); /* stronger shadow on dark bg */
 }
 
 input {
@@ -48,9 +50,15 @@ input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 8px;
   box-sizing: border-box;
+  background: #1a2d55;
+  color: #ffffff;
+}
+
+input::placeholder {
+  color: #99a7c2;
 }
 
 button {
@@ -61,7 +69,7 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  background: #007bff;
+  background: #007bff; /* ForeFlight bright blue */
   color: white;
   cursor: pointer;
   transition: background 0.3s;
@@ -76,7 +84,9 @@ span {
   display: inline-block;
   margin-top: 5px;
   font-size: 18px;
+  color: #ffffff; /* results text stays bright */
 }
+
 
   </style>
   <script>
