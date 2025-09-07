@@ -40,10 +40,13 @@ h1, h2, h3 {
 .section {
   margin-bottom: 20px;
   padding: 20px;
-  background: #243b6b; /* lighter ForeFlight-style panel blue */
+  background: rgba(36, 59, 107, 0.85); /* semi-transparent slate blue */
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5); /* stronger shadow on dark bg */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6); /* deeper shadow */
+  backdrop-filter: blur(8px); /* frosted glass effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari/iOS support */
 }
+
 
 input {
   margin: 8px 0;
