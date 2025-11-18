@@ -8,102 +8,138 @@
 	<link rel="apple-touch-icon" href="icon-192.png">
   <title>Learjet Performance Calculator</title>
   <style>
-    /* Dark, High-Contrast Theme (Inspired by PWA/Aviation Apps) */
-    :root {
-      --primary-color: #0096FF; /* Sky Blue for highlights */
-      --background-color: #1a1a1a; /* Dark background */
-      --card-color: #2c2c2c; /* Slightly lighter dark for inputs/groups */
-      --text-color: #ffffff;
-      --label-color: #cccccc;
+    /* USER-PROVIDED DARK THEME (ForeFlight Style) */
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1d3a; /* ForeFlight dark navy */
+      /* Base64 for 1x1 transparent pixel for subtle texture on some browsers */
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=");
+      background-repeat: repeat;
+      color: #e6ecf5; /* light gray text for dark bg */
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
     }
 
-    body { 
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-      padding: 15px; 
-      background-color: var(--background-color); 
-      color: var(--text-color);
-      max-width: 600px; /* Max width for app feel */
-      margin: 0 auto;
+    .container {
+      max-width: 700px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #ffffff; /* bright headings */
     }
     
-    h1 { 
-      color: var(--primary-color); 
-      text-align: center; 
-      margin-bottom: 25px; 
-      font-size: 1.8em;
+    h2 { /* Specific style for section headers */
+        font-size: 1.4em;
+        padding-top: 10px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 10px;
+        margin-top: 0;
     }
-    h2 { 
-      color: var(--text-color); 
-      border-bottom: 1px solid var(--card-color); 
-      padding-bottom: 8px; 
-      margin-top: 25px; 
-      font-size: 1.2em; 
-      font-weight: 500;
+
+    .section {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: rgba(36, 59, 107, 0.85); /* semi-transparent slate blue */
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6); /* deeper shadow */
+      backdrop-filter: blur(8px); /* frosted glass effect */
+      -webkit-backdrop-filter: blur(8px); /* Safari/iOS support */
+    }
+
+    .input-group { /* Group inputs for better layout */
+        margin-bottom: 10px;
+    }
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+        color: #99a7c2;
     }
     
-    .calculator { 
-      background-color: var(--background-color); 
-      padding: 0; 
-      border-radius: 0; 
-      margin-bottom: 20px; 
-    }
-    
-    .input-group { 
-      margin-bottom: 15px; 
+    input {
+      margin: 8px 0;
+      width: 100%;
       padding: 10px;
-      background-color: var(--card-color);
-      border-radius: 6px;
+      font-size: 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      box-sizing: border-box;
+      
+      background: rgba(255,255,255,0.1);  /* translucent, blends with card */
+      color: #ffffff;
+      
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px); /* Safari/iOS */
     }
-    .input-group label { 
-      display: block; 
-      margin-bottom: 5px; 
-      font-weight: normal; 
-      color: var(--label-color);
-      font-size: 0.9em;
+
+    input::placeholder {
+      color: #99a7c2; /* subtle light gray-blue */
     }
-    .input-group input { 
-      width: 100%; 
-      padding: 10px; 
-      border: 1px solid var(--primary-color); 
-      border-radius: 4px; 
-      box-sizing: border-box; 
-      background-color: #333; /* Darker input background */
-      color: var(--text-color);
-      font-size: 1.1em;
+
+
+    button {
+      margin-top: 12px;
+      padding: 14px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      
+      background: linear-gradient(
+        to bottom,
+        rgba(0,123,255,0.9),  /* lighter blue top */
+        rgba(0,86,179,0.9)    /* darker blue bottom */
+      );
+      
+      color: white;
+      cursor: pointer;
+      
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px); /* Safari/iOS */
+      
+      transition: all 0.2s ease;
     }
-    
+
+    button:hover {
+      background: linear-gradient(
+        to bottom,
+        rgba(0,140,255,0.95),
+        rgba(0,100,200,0.95)
+      );
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+    }
+
     .result-group { 
-      margin-top: 15px; 
-      padding: 15px; 
-      background-color: var(--card-color); 
-      border: 2px solid var(--primary-color); /* Highlight border */
-      border-radius: 6px; 
+      margin-top: 20px; 
+      padding: 15px 0; 
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
     .result-group p { 
-      margin: 8px 0; 
+      margin: 10px 0; 
       display: flex;
       justify-content: space-between;
-    }
-    .result-group strong { 
-      color: var(--primary-color); 
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    
-    button { 
-      width: 100%;
-      padding: 12px; 
-      background-color: var(--primary-color); 
-      color: black; 
-      font-weight: bold;
-      border: none; 
-      border-radius: 6px; 
-      cursor: pointer; 
-      margin-top: 15px; 
+      align-items: center;
       font-size: 1.1em;
+      color: #e6ecf5;
     }
-    button:hover { 
-      background-color: #0077D4; /* Slightly darker blue on hover */
+    /* Applying the user's 'span' result styles to the strong tags */
+    .result-group strong { 
+      font-weight: bold;
+      display: inline-block;
+      font-size: 18px; 
+      color: #ffffff; 
+      margin-left: 10px; /* space from label */
     }
   </style>
   <script>
@@ -157,6 +193,9 @@ function trilinearInterpolation(x, y, z, grid) {
     for (let i = 0; i < vals.length - 1; i++) {
       if (val >= vals[i] && val <= vals[i+1]) return [vals[i], vals[i+1]];
     }
+    // Handle extrapolation or exact boundary cases
+    if (val < vals[0]) return [vals[0], vals[0]];
+    if (val > vals[vals.length - 1]) return [vals[vals.length - 1], vals[vals.length - 1]];
     return [low, high];
   };
 
@@ -168,19 +207,25 @@ function trilinearInterpolation(x, y, z, grid) {
     const val = grid[x]?.[y]?.[z];
     return val === null || val === undefined ? null : val;
   }
+  
+  const isBoundaryX = x0 === x1;
+  const isBoundaryY = y0 === y1;
+  const isBoundaryZ = z0 === z1;
 
-  const xd = (x1 - x0) ? (x - x0) / (x1 - x0) : 0;
-  const yd = (y1 - y0) ? (y - y0) / (y1 - y0) : 0;
-  const zd = (z1 - z0) ? (z - z0) / (z1 - z0) : 0;
+  const xd = isBoundaryX ? 0 : (x - x0) / (x1 - x0);
+  const yd = isBoundaryY ? 0 : (y - y0) / (y1 - y0);
+  const zd = isBoundaryZ ? 0 : (z - z0) / (z1 - z0);
 
   const c000 = getValue(x0, y0, z0);
-  const c001 = getValue(x0, y0, z1);
-  const c010 = getValue(x0, y1, z0);
-  const c011 = getValue(x0, y1, z1);
-  const c100 = getValue(x1, y0, z0);
-  const c101 = getValue(x1, y0, z1);
-  const c110 = getValue(x1, y1, z0);
-  const c111 = getValue(x1, y1, z1);
+  const c001 = isBoundaryZ ? c000 : getValue(x0, y0, z1);
+  const c010 = isBoundaryY ? c000 : getValue(x0, y1, z0);
+  const c011 = isBoundaryY && isBoundaryZ ? c000 : (isBoundaryY ? c001 : (isBoundaryZ ? c010 : getValue(x0, y1, z1)));
+  
+  const c100 = isBoundaryX ? c000 : getValue(x1, y0, z0);
+  const c101 = isBoundaryX && isBoundaryZ ? c000 : (isBoundaryX ? c001 : (isBoundaryZ ? c100 : getValue(x1, y0, z1)));
+  const c110 = isBoundaryX && isBoundaryY ? c000 : (isBoundaryX ? c010 : (isBoundaryY ? c100 : getValue(x1, y1, z0)));
+  const c111 = isBoundaryX && isBoundaryY && isBoundaryZ ? c000 : (isBoundaryX ? c011 : (isBoundaryY ? c101 : (isBoundaryZ ? c110 : getValue(x1, y1, z1))));
+
 
   const values = [c000, c001, c010, c011, c100, c101, c110, c111];
   if (values.some(v => isnull(v))) {
@@ -189,14 +234,15 @@ function trilinearInterpolation(x, y, z, grid) {
 
   const c00 = c000 * (1 - xd) + c100 * xd;
   const c01 = c001 * (1 - xd) + c101 * xd;
-  const c10 = c010 * (1 - yd) + c110 * yd;
-  const c11 = c011 * (1 - yd) + c111 * yd;
+  const c10 = c010 * (1 - xd) + c110 * xd;
+  const c11 = c011 * (1 - xd) + c111 * xd;
 
   const c0 = c00 * (1 - yd) + c10 * yd;
   const c1 = c01 * (1 - yd) + c11 * yd;
 
   return c0 * (1 - zd) + c1 * zd;
 }
+
 
 function interpolateVrV2(weight) {
   for (let i = 0; i < vrV2Table.length - 1; i++) {
@@ -214,7 +260,7 @@ function interpolateVrV2(weight) {
   return { Vr: null, V2: null };
 }
 
-// --- NEW MAX WEIGHT FUNCTION (2D Interpolation) ---
+// --- MAX WEIGHT FUNCTION (2D Interpolation) ---
 function getMaxTakeoffWeight(alt, temp) {
     const getKeys = (obj) => Object.keys(obj).map(Number).sort((a, b) => a - b);
     const altVals = getKeys(maxWeightGrid);
@@ -230,7 +276,12 @@ function getMaxTakeoffWeight(alt, temp) {
             break;
         }
     }
-    if (!foundAltBounds) return null; // Outside altitude range
+    // Handle extrapolation or exact boundary cases
+    if (!foundAltBounds) {
+        if (alt < altVals[0]) [alt0, alt1] = [altVals[0], altVals[0]];
+        else if (alt > altVals[altVals.length - 1]) [alt0, alt1] = [altVals[altVals.length - 1], altVals[altVals.length - 1]];
+        else return null; 
+    }
 
     let temp0, temp1;
     let foundTempBounds = false;
@@ -242,17 +293,16 @@ function getMaxTakeoffWeight(alt, temp) {
             break;
         }
     }
-    if (!foundTempBounds) return null; // Outside temp range
+    // Handle extrapolation or exact boundary cases
+    if (!foundTempBounds) {
+        if (temp < tempVals[0]) [temp0, temp1] = [tempVals[0], tempVals[0]];
+        else if (temp > tempVals[tempVals.length - 1]) [temp0, temp1] = [tempVals[tempVals.length - 1], tempVals[tempVals.length - 1]];
+        else return null; 
+    }
     
-    // Handle edge cases where alt or temp is exactly on a boundary
-    if(alt === altVals[altVals.length - 1] || alt === altVals[0]){
-        alt0 = alt;
-        alt1 = alt;
-    }
-    if(temp === tempVals[tempVals.length - 1] || temp === tempVals[0]){
-        temp0 = temp;
-        temp1 = temp;
-    }
+    // Handle case where alt or temp is exactly on a boundary
+    if (!foundAltBounds) { alt0 = alt1 = alt; }
+    if (!foundTempBounds) { temp0 = temp1 = temp; }
 
 
     function getValue(a, t) {
@@ -261,12 +311,16 @@ function getMaxTakeoffWeight(alt, temp) {
     }
 
     const w00 = getValue(alt0, temp0);
-    const w01 = getValue(alt0, temp1);
-    const w10 = getValue(alt1, temp0);
-    const w11 = getValue(alt1, temp1);
+    const w01 = (temp0 === temp1) ? w00 : getValue(alt0, temp1);
+    const w10 = (alt0 === alt1) ? w00 : getValue(alt1, temp0);
+    const w11 = (alt0 === alt1 && temp0 === temp1) ? w00 : (alt0 === alt1 ? w01 : (temp0 === temp1 ? w10 : getValue(alt1, temp1)));
 
-    const values = [w00, w01, w10, w11];
-    if (values.some(v => isnull(v))) {
+    const values = [w00, w01, w10, w11].filter((v, i, a) => a.indexOf(v) === i && !isnull(v));
+    if (values.length === 0) {
+      // If all reference points are "NOT AUTH"
+      return null; 
+    }
+    if ([w00, w01, w10, w11].some(v => isnull(v))) {
       // If any point is "NOT AUTH", the whole block is restricted
       return null; 
     }
@@ -392,8 +446,8 @@ function calculateWeight() {
   let limitMessage = '';
 
   if (runwayLimit === null) {
-      // Runway calculation failed or required distance too high for min weight
-      finalResult = maxWeightLimit; // Use the chart limit as fallback/upper bound
+      // Runway calculation failed (e.g., runway too short for minimum weight)
+      finalResult = maxWeightLimit; // Max weight limit is still valid, but runway is the issue
       limitMessage = 'Limited by Max Takeoff Weight Chart'; 
   } else {
       // Final result is the minimum of the two limits
@@ -401,6 +455,8 @@ function calculateWeight() {
 
       if (finalResult === maxWeightLimit) {
           limitMessage = 'LIMITED BY Max Takeoff Weight Chart';
+      } else if (finalResult === runwayLimit && finalResult < 19600) {
+          limitMessage = 'LIMITED BY Runway Distance';
       }
   }
   
@@ -417,50 +473,52 @@ function calculateWeight() {
   </script>
 </head>
 <body>
-  <h1>LJ Perf</h1>
+  <div class="container">
+    <h1>LJ Perf</h1>
 
-  <div class="calculator">
-    <h2>1. Takeoff Distance Required</h2>
-    <div class="input-group">
-      <label for="altInput1">Pressure Altitude (ft):</label>
-      <input type="number" id="altInput1" value="0">
+    <div class="section">
+      <h2>1. Takeoff Distance Required</h2>
+      <div class="input-group">
+        <label for="altInput1">Pressure Altitude (ft):</label>
+        <input type="number" id="altInput1" value="0">
+      </div>
+      <div class="input-group">
+        <label for="weightInput">Takeoff Weight (lbs):</label>
+        <input type="number" id="weightInput" value="15000">
+      </div>
+      <div class="input-group">
+        <label for="tempInput1">Temperature (°C):</label>
+        <input type="number" id="tempInput1" value="15">
+      </div>
+      <button onclick="calculateDistance()">Calculate Performance</button>
+      
+      <div class="result-group">
+        <p>Required Distance: <strong id="distanceResult">---</strong></p>
+        <p>V1 Speed: <strong id="v1Result">---</strong></p>
+        <p>Vr Speed: <strong id="vrResult">---</strong></p>
+        <p>V2 Speed: <strong id="v2Result">---</strong></p>
+      </div>
     </div>
-    <div class="input-group">
-      <label for="weightInput">Takeoff Weight (lbs):</label>
-      <input type="number" id="weightInput" value="15000">
-    </div>
-    <div class="input-group">
-      <label for="tempInput1">Temperature (°C):</label>
-      <input type="number" id="tempInput1" value="15">
-    </div>
-    <button onclick="calculateDistance()">Calculate Performance</button>
-    
-    <div class="result-group">
-      <p>Required Distance: <strong id="distanceResult">---</strong></p>
-      <p>V1 Speed: <strong id="v1Result">---</strong></p>
-      <p>Vr Speed: <strong id="vrResult">---</strong></p>
-      <p>V2 Speed: <strong id="v2Result">---</strong></p>
-    </div>
-  </div>
 
-  <div class="calculator">
-    <h2>2. Maximum Allowable Takeoff Weight</h2>
-    <div class="input-group">
-      <label for="altInput2">Pressure Altitude (ft):</label>
-      <input type="number" id="altInput2" value="0">
-    </div>
-    <div class="input-group">
-      <label for="tempInput2">Temperature (°C):</label>
-      <input type="number" id="tempInput2" value="15">
-    </div>
-    <div class="input-group">
-      <label for="distInput">Available Distance (ft):</label>
-      <input type="number" id="distInput" value="6000">
-    </div>
-    <button onclick="calculateWeight()">Calculate Max Weight</button>
-    
-    <div class="result-group">
-      <p>Max Allowable Weight: <strong id="weightResult">---</strong></p>
+    <div class="section">
+      <h2>2. Maximum Allowable Takeoff Weight</h2>
+      <div class="input-group">
+        <label for="altInput2">Pressure Altitude (ft):</label>
+        <input type="number" id="altInput2" value="0">
+      </div>
+      <div class="input-group">
+        <label for="tempInput2">Temperature (°C):</label>
+        <input type="number" id="tempInput2" value="15">
+      </div>
+      <div class="input-group">
+        <label for="distInput">Available Distance (ft):</label>
+        <input type="number" id="distInput" value="6000">
+      </div>
+      <button onclick="calculateWeight()">Calculate Max Weight</button>
+      
+      <div class="result-group">
+        <p>Max Allowable Weight: <strong id="weightResult">---</strong></p>
+      </div>
     </div>
   </div>
 
