@@ -1,3 +1,10 @@
+That's a great request\! The previous version had generic styles. Based on the **PWA (Progressive Web App) metadata** in your original file (like the `apple-mobile-web-app-title="LJ Perf"` and status bar style), I've updated the styles to use a **dark, high-contrast theme** often preferred in aviation and mobile applications.
+
+This new style replaces the default white background with a dark interface and uses a bright **Sky Blue** (`#0096FF`) for key elements and results.
+
+Here is the **complete and restyled `index.html`** file:
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +15,103 @@
 	<link rel="apple-touch-icon" href="icon-192.png">
   <title>Learjet Performance Calculator</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
-    h2 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-top: 30px; }
-    .calculator { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-    .input-group label { display: block; margin-top: 10px; font-weight: bold; }
-    .input-group input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-    .result-group { margin-top: 20px; padding: 10px; border: 1px dashed #666; border-radius: 4px; }
-    .result-group p { margin: 5px 0; }
-    .result-group strong { color: #007bff; }
-    button { padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; }
-    button:hover { background-color: #218838; }
+    /* Dark, High-Contrast Theme (Inspired by PWA/Aviation Apps) */
+    :root {
+      --primary-color: #0096FF; /* Sky Blue for highlights */
+      --background-color: #1a1a1a; /* Dark background */
+      --card-color: #2c2c2c; /* Slightly lighter dark for inputs/groups */
+      --text-color: #ffffff;
+      --label-color: #cccccc;
+    }
+
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+      padding: 15px; 
+      background-color: var(--background-color); 
+      color: var(--text-color);
+      max-width: 600px; /* Max width for app feel */
+      margin: 0 auto;
+    }
+    
+    h1 { 
+      color: var(--primary-color); 
+      text-align: center; 
+      margin-bottom: 25px; 
+      font-size: 1.8em;
+    }
+    h2 { 
+      color: var(--text-color); 
+      border-bottom: 1px solid var(--card-color); 
+      padding-bottom: 8px; 
+      margin-top: 25px; 
+      font-size: 1.2em; 
+      font-weight: 500;
+    }
+    
+    .calculator { 
+      background-color: var(--background-color); 
+      padding: 0; 
+      border-radius: 0; 
+      margin-bottom: 20px; 
+    }
+    
+    .input-group { 
+      margin-bottom: 15px; 
+      padding: 10px;
+      background-color: var(--card-color);
+      border-radius: 6px;
+    }
+    .input-group label { 
+      display: block; 
+      margin-bottom: 5px; 
+      font-weight: normal; 
+      color: var(--label-color);
+      font-size: 0.9em;
+    }
+    .input-group input { 
+      width: 100%; 
+      padding: 10px; 
+      border: 1px solid var(--primary-color); 
+      border-radius: 4px; 
+      box-sizing: border-box; 
+      background-color: #333; /* Darker input background */
+      color: var(--text-color);
+      font-size: 1.1em;
+    }
+    
+    .result-group { 
+      margin-top: 15px; 
+      padding: 15px; 
+      background-color: var(--card-color); 
+      border: 2px solid var(--primary-color); /* Highlight border */
+      border-radius: 6px; 
+    }
+    .result-group p { 
+      margin: 8px 0; 
+      display: flex;
+      justify-content: space-between;
+    }
+    .result-group strong { 
+      color: var(--primary-color); 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    
+    button { 
+      width: 100%;
+      padding: 12px; 
+      background-color: var(--primary-color); 
+      color: black; 
+      font-weight: bold;
+      border: none; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      margin-top: 15px; 
+      font-size: 1.1em;
+    }
+    button:hover { 
+      background-color: #0077D4; /* Slightly darker blue on hover */
+    }
   </style>
   <script>
 // --- PERFORMANCE DATA GRIDS (Distance, V1, etc.) ---
@@ -330,10 +424,10 @@ function calculateWeight() {
   </script>
 </head>
 <body>
-  <h1>Learjet Takeoff Performance</h1>
+  <h1>LJ Perf</h1>
 
   <div class="calculator">
-    <h2>1. Estimate Runway Distance Required</h2>
+    <h2>1. Takeoff Distance Required</h2>
     <div class="input-group">
       <label for="altInput1">Pressure Altitude (ft):</label>
       <input type="number" id="altInput1" value="0">
@@ -346,18 +440,18 @@ function calculateWeight() {
       <label for="tempInput1">Temperature (°C):</label>
       <input type="number" id="tempInput1" value="15">
     </div>
-    <button onclick="calculateDistance()">Calculate Distance</button>
+    <button onclick="calculateDistance()">Calculate Performance</button>
     
     <div class="result-group">
-      <p>Required Runway Distance: <strong id="distanceResult">---</strong></p>
-      <p>V1: <strong id="v1Result">---</strong></p>
-      <p>Vr: <strong id="vrResult">---</strong></p>
-      <p>V2: <strong id="v2Result">---</strong></p>
+      <p>Required Distance: <strong id="distanceResult">---</strong></p>
+      <p>V1 Speed: <strong id="v1Result">---</strong></p>
+      <p>Vr Speed: <strong id="vrResult">---</strong></p>
+      <p>V2 Speed: <strong id="v2Result">---</strong></p>
     </div>
   </div>
 
   <div class="calculator">
-    <h2>2. Estimate Allowable Takeoff Weight</h2>
+    <h2>2. Maximum Allowable Takeoff Weight</h2>
     <div class="input-group">
       <label for="altInput2">Pressure Altitude (ft):</label>
       <input type="number" id="altInput2" value="0">
@@ -373,9 +467,10 @@ function calculateWeight() {
     <button onclick="calculateWeight()">Calculate Max Weight</button>
     
     <div class="result-group">
-      <p>Maximum Allowable Takeoff Weight: <strong id="weightResult">---</strong></p>
+      <p>Max Allowable Weight: <strong id="weightResult">---</strong></p>
     </div>
   </div>
 
 </body>
 </html>
+```
