@@ -7,6 +7,20 @@
 	<meta name="apple-mobile-web-app-title" content="LJ Perf">
 	<link rel="apple-touch-icon" href="icon-192.png">
   <title>Learjet Performance Calculator</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="LJ Perf">
+	<link rel="apple-touch-icon" href="icon-192.png">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('Service Worker registered!'))
+        .catch(err => console.log('Service Worker failed:', err));
+    });
+  }
+</script>
   <style>
     body {
       font-family: Arial, sans-serif;
