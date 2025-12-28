@@ -1,10 +1,10 @@
 const CACHE_NAME = "lj-perf-cache-v1";
 const FILES_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/icon-192.png",
-  "/icon-512.png"
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 // Install
@@ -31,3 +31,4 @@ self.addEventListener("fetch", (event) => {
     caches.match(event.request).then((response) => response || fetch(event.request))
   );
 });
+
